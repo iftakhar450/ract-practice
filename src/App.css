@@ -28,10 +28,23 @@
   color: #61dafb;
 }
 
+.btn-default {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
