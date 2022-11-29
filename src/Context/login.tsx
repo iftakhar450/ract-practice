@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react"
 
 export type LoginContextType = {
     isLoggedIn: boolean,
-    login: () => void;
+    login: (name: string, password: string) => void;
     logout: () => void;
 };
 
@@ -16,30 +16,33 @@ const defaultState = {
 
 
 const LoginContext = createContext<LoginContextType>(defaultState);
+
 export const useLogin = () => useContext(LoginContext) as LoginContextType;
 
 const LoginContextProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const [loginState, setloginState] = useState<boolean>(defaultState.isLoggedIn);
-
-
-
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(defaultState.isLoggedIn);
+    
     const login = (email: string, password: string) => {
         fetchLogin(email, password, (error: any) => {
             if (!error) {
-                setloginState(true)
+                setIsLoggedIn(true)
             } else {
-                setloginState(false)
+                setIsLoggedIn(false)
             }
         })
     }
-
     const logout = () => {
-        setloginState(false)
+        setIsLoggedIn(false)
+    }
+    const stateValues = {
+        isLoggedIn,
+        login,
+        logout
     }
 
     return (
-        <LoginContext.Provider value={{ loginState, login, logout }}>
+        <LoginContext.Provider value={stateValues}>
             {children}
         </LoginContext.Provider>
     )
