@@ -33,10 +33,10 @@ const Puller = styled(Box)(({ theme }) => ({
 }));
 const TableDrawer = () => {
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
-    const toggleDrawer = (newOpen: boolean) => () => {
-        setOpen(newOpen);
+    const toggleDrawer = () => () => {
+        setOpen(!open);
     };
     return (
         <Root>
@@ -50,14 +50,14 @@ const TableDrawer = () => {
                 }}
             />
             <Box sx={{ textAlign: 'center', pt: 1 }}>
-                <Button onClick={toggleDrawer(true)}>Open</Button>
+                <Button onClick={toggleDrawer()}>Open</Button>
             </Box>
             <SwipeableDrawer
-            
+
                 anchor="bottom"
                 open={open}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
+                onClose={toggleDrawer()}
+                onOpen={toggleDrawer()}
                 swipeAreaWidth={drawerBleeding}
                 disableSwipeToOpen={false}
                 ModalProps={{
@@ -75,6 +75,14 @@ const TableDrawer = () => {
                         left: 0,
                     }}
                 >
+
+                    <Button variant='contained' 
+                        
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        toggleDrawer()
+                    }}
+                        sx={{ position: "absolute", bottom: 20, right: 20, zIndex:-1 }}  >Test</Button>
                     <Puller />
                     <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
                 </StyledBox>

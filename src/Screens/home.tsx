@@ -11,7 +11,7 @@ const Home = () => {
         <div>
             <h1>Home</h1>
 
-            {/* <TableDrawer /> */}
+            <TableDrawer />
 
             {/* <button style={{marginTop:"199%", marginLeft:"42%", padding:"30px"}} onClick={test}>Test</button> */}
 
